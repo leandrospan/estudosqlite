@@ -1,5 +1,7 @@
 {
   "name": "estudoStorage",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
