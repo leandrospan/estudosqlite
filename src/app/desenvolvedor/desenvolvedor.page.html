@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="desenvolvedores"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Desenvolvedor</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deletar()">
+        <ion-icon name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+  <div *ngIf="desenvolvedor">
+    <ion-item>
+      <ion-label position="stacked">Qual seu nome?</ion-label>
+      <ion-input [(ngModel)]="desenvolvedor.nome" placeholder="Nome do Desenvolvedor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Qual são suas habilidades especiais (separe por vírgula)?</ion-label>
+      <ion-input [(ngModel)]="habilidades" placeholder="Habilidades Especiais"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">URL da sua imagem</ion-label>
+      <ion-input [(ngModel)]="desenvolvedor.imagem" placeholder="https://..."></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="atualizarDesenvolvedor()">Atualizar informações do Desenvolvedor</ion-button>
+  </div>
+</ion-content>

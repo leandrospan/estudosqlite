@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Desenvolvedores</ion-title>
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content padding>
+ 
+  <ion-segment [(ngModel)]="visaoSelecionada">
+    <ion-segment-button value="devs">
+      <ion-label>Desenvolvedor</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="produtos">
+      <ion-label>Produtos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+ 
+  <div [ngSwitch]="visaoSelecionada">
+    <div *ngSwitchCase="'devs'">
+      <ion-item>
+        <ion-label position="stacked">Qual seu nome?</ion-label>
+        <ion-input [(ngModel)]="desenvolvedor.nome" placeholder="Nome do Desenvolvedor"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Quais são suas habilidades especiais (separe com vírgulas)?</ion-label>
+        <ion-input [(ngModel)]="desenvolvedor.habilidades" placeholder="Habilidades Especiais"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">URL de sua imagem</ion-label>
+        <ion-input [(ngModel)]="desenvolvedor.imagem" placeholder="https://..."></ion-input>
+      </ion-item>
+      <ion-button expand="block" (click)="adicionarDesenvolvedor()">Adicionar informação do Desenvolvedor</ion-button>
+ 
+      <ion-list>
+        <ion-item button *ngFor="let dev of desenvolvedores" [routerLink]="['/', 'desenvolvedores', dev.codigo]">
+          <ion-avatar slot="start">
+            <img [src]="dev.imagem">
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ dev.nome }}</h2>
+            <p>{{ dev.habilidades }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+ 
+    <div *ngSwitchCase="'produtos'">
+      <ion-item>
+        <ion-label position="stacked">Nome do produto</ion-label>
+        <ion-input [(ngModel)]="produto.nome" placeholder="Nome"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Criador?</ion-label>
+        <ion-select [(ngModel)]="produto.criador">
+          <ion-select-option *ngFor="let dev of desenvolvedores" [value]="dev.codigo">{{ dev.nome }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="adicionarProduto()">Adicionar Produto</ion-button>
+ 
+      <ion-list>
+        <ion-item *ngFor="let prod of produtos | async">
+          <ion-label>
+            <h2>{{ prod.nome }}</h2>
+            <p>Criado por: {{ prod.criador }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+ 
+</ion-content>
