@@ -28,7 +28,7 @@ export class DesenvolvedoresPage implements OnInit {
       }
     });
   }
-
+ 
   public adicionarDesenvolvedor() {
     let habilidades = this.desenvolvedor['habilidades'].split(',');
     habilidades = habilidades.map(habilidades => habilidades.trim());

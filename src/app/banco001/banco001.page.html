@@ -1,9 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>banco001</ion-title>
+    <ion-title>Banco de Dados SQLite</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding text-center>
+  <ion-button expand = "block" (click) = "criarBD()">Cria Banco de Dados</ion-button>
+  <ion-button expand = "block" (click) = "criarTabela()">Cria Tabela</ion-button>
+  <ion-button expand = "block" (click) = "getLinhas()">Carrega linhas</ion-button>
+  <ion-item-divider>
+    <ion-input placeholder = "Digite o Nome" [(ngModel)] = "nome_modelo"></ion-input>
+    <ion-button expand = "block" (click) = "inserirLinha()">Inserir Linha</ion-button>
+  </ion-item-divider>
+  <ion-grid>
+    <ion-row>
+      <ion-col>Código da Linha: </ion-col>
+      <ion-col>Nome: </ion-col>
+      <ion-col>Deletar: </ion-col>
+    </ion-row>
+    <ion-row *ngFor = "let item of linha_dados">
+      <ion-col>{{item.codigo}}</ion-col>
+      <ion-col>{{item.nome}}</ion-col>
+      <ion-col>
+        <ion-button (click) = "deletarLinha(item)" size = "small" color = "danger">
+          <ion-icon name = "trash"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

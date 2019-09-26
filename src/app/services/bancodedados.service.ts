@@ -12,7 +12,7 @@ export interface Dev {
   habilidades: any[],
   imagem: string
 }
-
+ 
 @Injectable({
   providedIn: 'root'
 })
